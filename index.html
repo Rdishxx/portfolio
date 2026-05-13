@@ -230,6 +230,44 @@
       margin-top: 0.5rem;
     }
 
+
+    /* ─── PHOTO FRAME ─── */
+    .photo-frame {
+      position: relative;
+      width: 260px; height: 280px;
+      display: inline-block;
+    }
+    .profile-photo {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      filter: grayscale(20%) contrast(1.1) brightness(0.9);
+      border: 2px solid var(--green);
+      box-shadow: 0 0 30px var(--green-glow), 0 0 60px rgba(0,255,65,0.1);
+      position: relative; z-index: 1;
+    }
+    .photo-scan {
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(to right, transparent, var(--green), transparent);
+      z-index: 2;
+      animation: scanLine 2.5s linear infinite;
+      box-shadow: 0 0 10px var(--green);
+    }
+    @keyframes scanLine {
+      0%   { top: 0%; opacity: 1; }
+      95%  { opacity: 1; }
+      100% { top: 100%; opacity: 0; }
+    }
+    .photo-corner {
+      position: absolute; width: 18px; height: 18px; z-index: 3;
+    }
+    .photo-corner.tl { top: -4px; left: -4px; border-top: 3px solid var(--green); border-left: 3px solid var(--green); }
+    .photo-corner.tr { top: -4px; right: -4px; border-top: 3px solid var(--green); border-right: 3px solid var(--green); }
+    .photo-corner.bl { bottom: -4px; left: -4px; border-bottom: 3px solid var(--green); border-left: 3px solid var(--green); }
+    .photo-corner.br { bottom: -4px; right: -4px; border-bottom: 3px solid var(--green); border-right: 3px solid var(--green); }
+
     /* ─── ABOUT ─── */
     #about .about-grid {
       display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
@@ -545,11 +583,13 @@
     </div>
     <div class="about-grid">
       <div class="about-visual reveal">
-        <div class="about-rings">
-          <div class="about-dot"></div>
-        </div>
-        <div class="about-hex">
-          <div class="about-hex-inner">RR</div>
+        <div class="photo-frame">
+          <div class="photo-scan"></div>
+          <img src="myphoto.jpg" alt="Randish Ranasinghe" class="profile-photo"/>
+          <div class="photo-corner tl"></div>
+          <div class="photo-corner tr"></div>
+          <div class="photo-corner bl"></div>
+          <div class="photo-corner br"></div>
         </div>
       </div>
       <div class="about-text reveal">
